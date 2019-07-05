@@ -1,11 +1,11 @@
 <template>
-  <header class="header-bg">
-    <div class="header">
-      <nav id="menu" class="container">
+  <header class="header-bg" :style="backgroundUrl">
+    <div class="header container">
+      <nav id="menu" >
         <img src="@/assets/images/mobile/menu.svg">
       </nav>
       <div class="liteflix">
-        <img v-bind:src="getImgUrl(logo)" v-bind:alt="logo">
+        <img src="@/assets/images/mobile/liteflix.svg" v-bind:alt="logo">
       </div>
     </div>
   </header>
@@ -18,13 +18,13 @@ export default {
   data () {
     return {
       logo: 'liteflix.svg',
-      backgroundUrl: '3-01.png'
+      backgroundUrl: {
+          backgroundImage: 'url(https://dummyimage.com/360x545/000/fff), linear-gradient(to top, rgba(0, 0, 0, 0.2), #000000)'
+      }
     }
   },
   methods: {
-    getImgUrl(pic) {
-      return require('@/assets/images/'+pic);
-    }
+    
   }
 }
 </script>
@@ -33,6 +33,8 @@ export default {
 
 
 .header-bg {
+  background-size: 100%;
+  height: 545px;
 }
 .header {
   display: flex;
@@ -41,16 +43,20 @@ export default {
   width: 100%;
   padding-top: 12px;
 }
-.menu {
+#menu {
   width: 21px;
   height: 13px;
   object-fit: contain;
+  position: relative;
+  left: 15px;
 }
 .liteflix {
   height: 27px;
   text-align: center;
-  flex-grow: 1;
+  position: absolute;
   object-fit: contain;
+  left: 50%;
+  transform: translate(-50%, 0);
 }
 
 </style>
