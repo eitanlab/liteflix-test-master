@@ -10,6 +10,7 @@ import _ from 'lodash'
 
 import createPersistedState from 'vuex-persistedstate'
 
+
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
@@ -28,7 +29,8 @@ const store = new Vuex.Store({
         selected: false
       }
     ],
-    featuredMovie: {}
+    featuredMovie: {},
+    upcoming: []
   },
   getters : {
     USUARIOS : state => {
@@ -36,7 +38,10 @@ const store = new Vuex.Store({
     },
     FEATURED_MOVIE : state => {
       return state.featuredMovie;
-    }
+    },
+    UPCOMING: state => {
+      return state.upcoming;
+    },
   },
   mutations : {
     setMouseOnUserTitle: (state,status) => {
@@ -52,13 +57,23 @@ const store = new Vuex.Store({
     SET_FEATURED_MOVIE : (state,payload) => {
       state.featuredMovie = payload
     },
+    SET_UPCOMING : (state,payload) => {
+      state.upcoming = payload
+    },
   },
   actions: {
     GET_FEATURED_MOVIE : async (context,payload) => {
       let { data } = await Axios.get('https://api.themoviedb.org/3/movie/now_playing?api_key=6f26fd536dd6192ec8a57e94141f8b20')
       data = _.orderBy(data.results, 'release_date', 'desc')
       context.commit('SET_FEATURED_MOVIE',data[0])
+    },
+    GET_UPCOMING : async (context,payload) => {
+      let { data } = await Axios.get('https://api.themoviedb.org/3/movie/upcoming?api_key=6f26fd536dd6192ec8a57e94141f8b20')
+      data = _.orderBy(data.results, 'release_date', 'desc')
+      data = _.slice(data, 0, 4)
+      context.commit('SET_UPCOMING',data)
     }
+
   }
 })
 

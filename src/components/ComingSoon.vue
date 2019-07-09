@@ -1,24 +1,20 @@
 <template>
     <div class="coming-soon container">
         <h3 class="title">Próximamente</h3>
-        <div class="list">
+        <div class="list" >
             <img 
-                :src="require('@/assets/images/mobile/1-03.png')" 
-                :srcset="require('@/assets/images/mobile/1-01.png') + ' 1x, ' + require('@/assets/images/mobile/1-02.png') + ' 2x'" class="item"/>
-            <img 
-                :src="require('@/assets/images/mobile/1-03.png')" 
-                :srcset="require('@/assets/images/mobile/1-01.png') + ' 1x, ' + require('@/assets/images/mobile/1-02.png') + ' 2x'" class="item"/>
-            <img 
-                :src="require('@/assets/images/mobile/1-03.png')" 
-                :srcset="require('@/assets/images/mobile/1-01.png') + ' 1x, ' + require('@/assets/images/mobile/1-02.png') + ' 2x'" class="item"/>
-            <img 
-                :src="require('@/assets/images/mobile/1-03.png')" 
-                :srcset="require('@/assets/images/mobile/1-01.png') + ' 1x, ' + require('@/assets/images/mobile/1-02.png') + ' 2x'" class="item"/>    
+							class="item"
+							:key="index" 
+							v-for="(item, index) in UPCOMING"
+              :src="`https://image.tmdb.org/t/p/w300/${item.backdrop_path}`"
+						/>
         </div>
     </div>
 </template>
 
 <script>
+
+import {mapGetters} from 'vuex'
 
 export default {
   name: 'ComingSoon',
@@ -27,9 +23,12 @@ export default {
 
     }
   },
-  methods: {
-    
-  }
+  mounted(){
+    this.$store.dispatch('GET_UPCOMING')
+	},
+	computed : {
+		...mapGetters(['UPCOMING']),
+	}
 }
 </script>
 
@@ -38,15 +37,16 @@ export default {
         margin-bottom: 40px;
         position: relative;
         top: -64px;
-        @include media-breakpoint-up(lg) {  
-            margin-left: 165px;
-        }
+        
         .title {
             height: 24px;
             font-family: Raleway;
             font-size: 20px;
             font-weight: 800;
             color: rgb(255, 255, 255);
+						@include media-breakpoint-up(lg) {  
+							margin-bottom: 20px;
+						}
         }
         .list {
             display: grid;
@@ -54,8 +54,16 @@ export default {
             grid-template-columns: repeat(auto-fit, minmax(329px, 1fr));
             justify-items: center;
             height: 834px;
+						@include media-breakpoint-up(lg) {  
+							align-items: start;
+							grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+							justify-items: start;
+							height: 155px;
+							grid-gap: 1rem;
+							margin-bottom: 40px;
+						}
             .item {
-                height: 201px;
+								width: 255px;
             }
         }
     }

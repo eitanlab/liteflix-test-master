@@ -29,7 +29,7 @@ export default {
     }
 	},
 	mounted(){
-    this.$store.dispatch('GET_FEATURED_MOVIE')
+        this.$store.dispatch('GET_FEATURED_MOVIE')
 	},
 	computed : {
 		...mapGetters(['FEATURED_MOVIE']),
