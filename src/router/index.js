@@ -10,11 +10,6 @@ let router = new Router({
       path: '/',
       name: 'Landing',
       component: () => import('@/pages/Landing')
-    },
-    {
-      path: '/header',
-      name: 'Header',
-      component: () => import('@/components/Header')
     }
   ]
 })

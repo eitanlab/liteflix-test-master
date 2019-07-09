@@ -13,8 +13,36 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   plugins: [createPersistedState()],
   state: {
+    mouseOnUserTitle: false,
+    mouseOnUserSubMenu: false,
+    usuarios: [
+      { nombre: "Ernesto Garmendia",
+        selected: true
+      },
+      { nombre: "User 03",
+        selected: false
+      },
+      { nombre: "User 04",
+        selected: false
+      }
+    ]
   },
-  mutations: {
+  getters : {
+    USUARIOS : state => {
+      return state.usuarios;
+    }
+  },
+  mutations : {
+    setMouseOnUserTitle: (state,status) => {
+      if (status == false) {
+        setTimeout( () => state.mouseOnUserTitle = status, 1000)
+      } else {
+        return state.mouseOnUserTitle = status;
+      } 
+    },
+    setMouseOnUserSubMenu: (state,status) => {
+      return state.mouseOnUserSubMenu = status;
+  }
   }
 })
 

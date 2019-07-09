@@ -38,6 +38,9 @@ export default {
         margin-bottom: 40px;
         position: relative;
         top: -64px;
+        @include media-breakpoint-up(lg) {  
+            margin-left: 165px;
+        }
         .title {
             height: 24px;
             font-family: Raleway;

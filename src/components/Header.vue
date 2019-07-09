@@ -1,37 +1,39 @@
 <template>
   <div>
-    <header class="header container">
-      <nav id="menuIcon" >
+    <header class="header container-fluid">
+      <nav id="menuIcon" class="d-lg-none">
         <img src="@/assets/images/mobile/menu.svg" v-on:click='menuOpened = !menuOpened'>
       </nav>
       <div class="liteflix" :class="[ menuOpened ? 'left' : 'center' ]">
-        <img src="@/assets/images/mobile/liteflix.svg" v-bind:alt="logo">
+        <img src="@/assets/images/mobile/liteflix.svg" alt="Liteflix">
       </div>
+      <DesktopPrimaryNav />
+      <DesktopUserNav />
     </header>
-    <MobileMenu :menuOpened="menuOpened" />
+    <MobileNav :menuOpened="menuOpened" />
   </div>
 </template>
 
 <script>
 
-import MobileMenu from './MobileMenu.vue';
+import MobileNav from './MobileNav.vue';
+import DesktopPrimaryNav from './DesktopPrimaryNav.vue';
+import DesktopUserNav from './DesktopUserNav.vue';
 
 export default {
   name: 'Header',
   data () {
     return {
-      logo: 'liteflix.svg',
-      backgroundUrl: {
-          backgroundImage: 'url(https://dummyimage.com/360x545/000/FFF), linear-gradient(to top, rgba(0, 0, 0, 0.2), #000000)'
-      },
-      menuOpened: true
+      menuOpened: false
     }
   },
   methods: {
 
   },
   components: {
-    MobileMenu
+    MobileNav,
+    DesktopPrimaryNav,
+    DesktopUserNav
   }
 }
 </script>
@@ -48,6 +50,9 @@ export default {
   padding-top: 12px;
   position: absolute;
   z-index: 999;
+  @include media-breakpoint-up(lg) {  
+    padding: 12px 165px;
+  }
   #menuIcon {
     width: 30px;
     height: 30px;
@@ -62,8 +67,14 @@ export default {
     object-fit: contain;
     transform: translate(-50%, 0);
     z-index: 999;
-    &.left {left: 100px;transition: .3s ease all;}
-    &.center {left: 50%;transition: .3s ease all;}
+    @include media-breakpoint-down(lg) {
+      &.left {left: 100px;transition: .3s ease all;}
+      &.center {left: 50%;transition: .3s ease all;}
+    }
+    @include media-breakpoint-up(lg) {  
+      position: relative;
+      transform: none;
+    }
   }
 }
 
