@@ -1,9 +1,9 @@
 <template>
-    <div class="featured-movie-bg" :style="backgroundUrl">
+    <div class="featured-movie-bg" :style="`backgroundImage: url(https://image.tmdb.org/t/p/original/${FEATURED_MOVIE.backdrop_path}), linear-gradient(to top, rgba(0, 0, 0, 0.2), #000000);`">
         <div class="cover"></div>
         <div class="titles">
             <h2>ORIGINAL DE <span>LITEFLIX</span></h2>
-            <h1>Kids at school</h1>
+            <h1>{{FEATURED_MOVIE.title}}</h1>
         </div>
         <div class="interaction-bar container">
             <div class="play-btn">
@@ -11,23 +11,29 @@
             </div>
             <img src="@/assets/images/mobile/add-list.svg" class="add-List">
         </div>
+				<div class="description d-none d-lg-block">
+					<p>{{FEATURED_MOVIE.overview}}</p>
+				</div>
     </div>
 </template>
 
 <script>
 
+import {mapGetters} from 'vuex'
+
 export default {
   name: 'FeaturedMovie',
   data () {
     return {
-      backgroundUrl: {
-          backgroundImage: 'url(https://dummyimage.com/360x545/e3e3e3/fff), linear-gradient(to top, rgba(0, 0, 0, 0.2), #000000)'
-      }
+
     }
-  },
-  methods: {
-    
-  }
+	},
+	mounted(){
+    this.$store.dispatch('GET_FEATURED_MOVIE')
+	},
+	computed : {
+		...mapGetters(['FEATURED_MOVIE']),
+	}
 }
 </script>
 
@@ -48,6 +54,9 @@ export default {
             background-image: linear-gradient(to top, rgba(0, 0, 0, 0), rgb(0, 0, 0));
             position: absolute;
             bottom: 122px;
+            @include media-breakpoint-up(lg) {  
+                display: none;
+            }
         }
         .titles {
             display: flex;
