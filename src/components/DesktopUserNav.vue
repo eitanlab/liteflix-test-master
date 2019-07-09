@@ -6,7 +6,10 @@
                     <ul class="d-flex flex-row">
                         <li><a href="#">Niños</a></li>
                         <li><a href="#"><img src="@/assets/images/desktop/bell.svg" class="bell"></a></li>
-                        <li @mouseover="$store.commit('setMouseOnUserTitle', true)" @mouseleave="$store.commit('setMouseOnUserTitle', false)" >
+                        <li 
+                        @mouseover="$store.commit('setMouseOnUserTitle', true)" 
+                        @mouseleave="$store.commit('setMouseOnUserTitle', false)" 
+                        >
                             <img src="@/assets/images/desktop/user-01.svg" class="fill">
                             <img src="@/assets/images/desktop/arrow.svg" class="arrow">
                         </li>
@@ -14,25 +17,26 @@
                 </nav>
             </div>
             <div class="sub-nav" 
-                        v-if="mouseOnUserTitle || mouseOnUserSubMenu"
-                        @mouseover="$store.commit('setMouseOnUserSubMenu', true)" @mouseleave="$store.commit('setMouseOnUserSubMenu', false)"
-                    >
+            v-if="mouseOnUserTitle || mouseOnUserSubMenu"
+            @mouseover="$store.commit('setMouseOnUserSubMenu', true)" 
+            @mouseleave="$store.commit('setMouseOnUserSubMenu', false)"
+            >
                 <div class="container d-flex flex-column">
-                                    <div class="user-btn" 
-                                        :class="item.selected ? 'selected' : 'unselected'" 
-                                        :key="index" v-for="(item, index) in USUARIOS"
-                                    >
-                                            <img :src="item.selected ? require('@/assets/images/mobile/fill-1.svg') : require('@/assets/images/mobile/fill-1.svg')" class="oval"><span>{{ item.nombre | truncate(8, '...') }}</span>
-                                    </div>
-                                    <nav class="config">
-                                        <ul class="d-flex flex-column">
-                                                <li><a href="#">Configuración</a></li>
-                                                <li><a href="#">Ayuda</a></li>
-                                                <li><a href="#">Logout</a></li>
-                                        </ul>
-                                    </nav>
-                            </div>
-                            <div class="rectangle"></div>
+                    <div class="user-btn" 
+                        :class="item.selected ? 'selected' : 'unselected'" 
+                        :key="index" v-for="(item, index) in USUARIOS"
+                    >
+                            <img :src="item.selected ? require('@/assets/images/mobile/fill-1.svg') : require('@/assets/images/mobile/fill-1.svg')" class="oval"><span>{{ item.nombre | truncate(8, '...') }}</span>
+                    </div>
+                    <nav class="config">
+                        <ul class="d-flex flex-column">
+                                <li><a href="#">Configuración</a></li>
+                                <li><a href="#">Ayuda</a></li>
+                                <li><a href="#">Logout</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="rectangle"></div>
             </div>
         </div>
     </div>
@@ -57,16 +61,15 @@ export default {
             return this.$store.state.mouseOnUserSubMenu
 		},
 		...mapGetters(['USUARIOS'])
-  	//Other computed properties
 	},
 	filters: {
     truncate: function (text, length, suffix) {
-				if (text.length > length) {
-						return text.substring(0, length) + suffix;
-				} else {
-						return text;
-				}
-		},
+        if (text.length > length) {
+                return text.substring(0, length) + suffix;
+        } else {
+                return text;
+        }
+	},
   }
 }
 </script>
@@ -120,8 +123,9 @@ export default {
             background-color: rgb(255, 255, 255);
             position: absolute;
             right: 0;
-						padding-top: 11px;
-						z-index: 999;
+            top: 50px;
+            padding-top: 11px;
+			z-index: 999;
             .rectangle {
                 width: 17px;
                 height: 17px;

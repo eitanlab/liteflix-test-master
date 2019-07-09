@@ -37,7 +37,6 @@ export default {
         margin-bottom: 40px;
         position: relative;
         top: -64px;
-        
         .title {
             height: 24px;
             font-family: Raleway;
@@ -61,6 +60,9 @@ export default {
 							height: 155px;
 							grid-gap: 1rem;
 							margin-bottom: 40px;
+							.item {
+								width: 255px;
+            	}
 						}
             .item {
 								width: 255px;

@@ -30,7 +30,8 @@ const store = new Vuex.Store({
       }
     ],
     featuredMovie: {},
-    upcoming: []
+    upcoming: [],
+    popular: []
   },
   getters : {
     USUARIOS : state => {
@@ -42,17 +43,20 @@ const store = new Vuex.Store({
     UPCOMING: state => {
       return state.upcoming;
     },
+    POPULAR: state => {
+      return state.popular;
+    }
   },
   mutations : {
     setMouseOnUserTitle: (state,status) => {
-      if (status == false) {
-        setTimeout( () => state.mouseOnUserTitle = status, 1000)
+      if (status == true) {
+        return state.mouseOnUserTitle = status
       } else {
-        return state.mouseOnUserTitle = status;
+        setTimeout( () => state.mouseOnUserTitle = status, 1000)
       } 
     },
     setMouseOnUserSubMenu: (state,status) => {
-      return state.mouseOnUserSubMenu = status;
+      return state.mouseOnUserSubMenu = status
     },
     SET_FEATURED_MOVIE : (state,payload) => {
       state.featuredMovie = payload
@@ -60,6 +64,9 @@ const store = new Vuex.Store({
     SET_UPCOMING : (state,payload) => {
       state.upcoming = payload
     },
+    SET_POPULAR : (state,payload) => {
+      state.popular = payload
+    }
   },
   actions: {
     GET_FEATURED_MOVIE : async (context,payload) => {
@@ -72,8 +79,13 @@ const store = new Vuex.Store({
       data = _.orderBy(data.results, 'release_date', 'desc')
       data = _.slice(data, 0, 4)
       context.commit('SET_UPCOMING',data)
+    },
+    GET_POPULAR : async (context,payload) => {
+      let { data } = await Axios.get('https://api.themoviedb.org/3/movie/popular?api_key=6f26fd536dd6192ec8a57e94141f8b20')
+      data = _.orderBy(data.results, 'release_date', 'desc')
+      data = _.slice(data, 0, 4)
+      context.commit('SET_POPULAR',data)
     }
-
   }
 })
 

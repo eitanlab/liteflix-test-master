@@ -2,23 +2,19 @@
     <div class="popular container">
         <h3 class="title">POPULARES DE LITEFLIX</h3>
         <div class="list">
-            <img 
-                :src="require('@/assets/images/mobile/3-02.png')" 
-                :srcset="require('@/assets/images/mobile/3-01.png') + ' 1x, ' + require('@/assets/images/mobile/3-02.png') + ' 2x'" class="item"/>
-            <img 
-                :src="require('@/assets/images/mobile/3-02.png')" 
-                :srcset="require('@/assets/images/mobile/3-01.png') + ' 1x, ' + require('@/assets/images/mobile/3-02.png') + ' 2x'" class="item"/>
-            <img 
-                :src="require('@/assets/images/mobile/3-02.png')" 
-                :srcset="require('@/assets/images/mobile/3-01.png') + ' 1x, ' + require('@/assets/images/mobile/3-02.png') + ' 2x'" class="item"/>
-            <img 
-                :src="require('@/assets/images/mobile/3-02.png')" 
-                :srcset="require('@/assets/images/mobile/3-01.png') + ' 1x, ' + require('@/assets/images/mobile/3-02.png') + ' 2x'" class="item"/>    
+					<img 
+					class="item"
+					:key="index" 
+					v-for="(item, index) in POPULAR"
+					:src="`https://image.tmdb.org/t/p/w300/${item.poster_path}`"
+					/>
         </div>
     </div>
 </template>
 
 <script>
+
+import {mapGetters} from 'vuex'
 
 export default {
   name: 'Popular',
@@ -27,9 +23,12 @@ export default {
 
     }
   },
-  methods: {
-    
-  }
+  mounted(){
+    this.$store.dispatch('GET_POPULAR')
+	},
+	computed : {
+			...mapGetters(['POPULAR']),
+	}
 }
 </script>
 
@@ -38,9 +37,6 @@ export default {
         margin-bottom: 40px;
         position: relative;
         top: -64px;
-        @include media-breakpoint-up(lg) {  
-            margin-left: 165px;
-        }
         .title {
             height: 24px;
             font-family: Raleway;
@@ -54,8 +50,14 @@ export default {
             grid-template-columns: repeat(auto-fit, minmax(163px, 1fr));
             justify-items: center;
             height: 659px;
+            @include media-breakpoint-up(lg) {
+                grid-template-columns: repeat(auto-fit, minmax(253px, 1fr));
+                justify-items: start;
+                grid-gap: 1rem;
+                height: auto;
+            }
             .item {
-                height: 328px;
+							width: 100%;
             }
         }
     }
