@@ -34,7 +34,7 @@ export default {
 
 <style lang="scss" scoped>
     .popular {
-        margin-bottom: 40px;
+        padding-bottom: 40px;
         position: relative;
         .title {
             height: 24px;
@@ -56,7 +56,7 @@ export default {
                 height: auto;
             }
             .item {
-							width: 100%;
+				width: 100%;
             }
         }
     }
