@@ -1,6 +1,6 @@
 <template>
   <div>
-    <header class="header container-fluid">
+    <header class="header container">
       <nav id="menuIcon" class="d-lg-none">
         <img src="@/assets/images/mobile/menu.svg" v-on:click='menuOpened = !menuOpened'>
       </nav>
@@ -50,8 +50,9 @@ export default {
   padding-top: 12px;
   position: absolute;
   z-index: 999;
+  left: 0;
+  right: 0;
   @include media-breakpoint-up(lg) {  
-    padding: 12px 165px;
   }
   #menuIcon {
     width: 30px;

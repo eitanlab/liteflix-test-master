@@ -1,6 +1,6 @@
 <template>
-    <div class="d-none d-lg-block">
-        <div class="user-nav d-flex flex-column">
+    <div class="user-nav d-none d-lg-block">
+        <div class="d-flex flex-column">
             <div class="wraper d-flex flex-row">
                 <nav class="primary">
                     <ul class="d-flex flex-row">

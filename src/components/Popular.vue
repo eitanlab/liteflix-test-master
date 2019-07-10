@@ -36,7 +36,6 @@ export default {
     .popular {
         margin-bottom: 40px;
         position: relative;
-        top: -64px;
         .title {
             height: 24px;
             font-family: Raleway;

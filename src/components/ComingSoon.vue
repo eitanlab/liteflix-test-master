@@ -6,7 +6,7 @@
 							class="item"
 							:key="index" 
 							v-for="(item, index) in UPCOMING"
-              :src="`https://image.tmdb.org/t/p/w300/${item.backdrop_path}`"
+              :src="`https://image.tmdb.org/t/p/w400/${item.backdrop_path}`"
 						/>
         </div>
     </div>
@@ -36,7 +36,7 @@ export default {
     .coming-soon {
         margin-bottom: 40px;
         position: relative;
-        top: -64px;
+        top: -20px;
         .title {
             height: 24px;
             font-family: Raleway;
@@ -50,14 +50,13 @@ export default {
         .list {
             display: grid;
             align-items: center;
-            grid-template-columns: repeat(auto-fit, minmax(329px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
             justify-items: center;
-            height: 834px;
+            grid-gap: 10px;
 						@include media-breakpoint-up(lg) {  
 							align-items: start;
 							grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
 							justify-items: start;
-							height: 155px;
 							grid-gap: 1rem;
 							margin-bottom: 40px;
 							.item {
@@ -65,7 +64,10 @@ export default {
             	}
 						}
             .item {
-								width: 255px;
+              width: 330px;
+              @include media-breakpoint-up(lg) {  	
+                width: 255px;
+              }
             }
         }
     }
