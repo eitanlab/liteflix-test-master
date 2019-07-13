@@ -2,12 +2,11 @@
     <div class="coming-soon container">
         <h3 class="title">Próximamente</h3>
         <div class="list" >
-            <img 
-							class="item"
-							:key="index" 
-							v-for="(item, index) in UPCOMING"
-              :src="`https://image.tmdb.org/t/p/w400/${item.backdrop_path}`"
-						/>
+            <ComingSoonItem 
+            v-for="(ComingSoonObj, index) in UPCOMING" 
+            :ComingSoonObj="ComingSoonObj"
+            :key="ComingSoonObj.index"
+            />
         </div>
     </div>
 </template>
@@ -15,6 +14,7 @@
 <script>
 
 import {mapGetters} from 'vuex'
+import ComingSoonItem from './ComingSoonItem';
 
 export default {
   name: 'ComingSoon',
@@ -22,6 +22,9 @@ export default {
     return {
 
     }
+  },
+  components: {
+    ComingSoonItem
   },
   mounted(){
     this.$store.dispatch('GET_UPCOMING')
@@ -59,16 +62,7 @@ export default {
 							justify-items: start;
 							grid-gap: 1rem;
 							margin-bottom: 40px;
-							.item {
-								width: 255px;
-            	}
 						}
-            .item {
-              width: 330px;
-              @include media-breakpoint-up(lg) {  	
-                width: 255px;
-              }
-            }
         }
     }
 </style>
