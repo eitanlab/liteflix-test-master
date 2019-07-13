@@ -6,6 +6,7 @@
             v-for="(ComingSoonObj, index) in UPCOMING" 
             :ComingSoonObj="ComingSoonObj"
             :key="ComingSoonObj.index"
+            :genre="GENRE_BY_ID(ComingSoonObj.genre_ids[0])"
             />
         </div>
     </div>
@@ -27,10 +28,10 @@ export default {
     ComingSoonItem
   },
   mounted(){
-    this.$store.dispatch('GET_UPCOMING')
+    this.$store.dispatch('GET_GENRES')
 	},
 	computed : {
-		...mapGetters(['UPCOMING']),
+    ...mapGetters(['UPCOMING','GENRE_BY_ID']),
 	}
 }
 </script>

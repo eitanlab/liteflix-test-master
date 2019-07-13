@@ -2,7 +2,6 @@
     <div class="coming-soon-item">
       <img 
         class="item"
-        :key="{key}" 
         :src="`https://image.tmdb.org/t/p/w400/${ComingSoonObj.backdrop_path}`"
       />
       <div class="cover">
@@ -17,7 +16,7 @@
             <div class="d-flex flex-column justify-content-start">
               <p class="title">Black mirror</p>
               <p>98% de coincidencia<span>+16</span>1h 30 min</p>
-              <p>Suspenso</p>
+              <p>{{genre.name}}</p>
             </div>
             <img src="@/assets/images/desktop/arrow.svg" class="arrow">
           </div>
@@ -38,7 +37,8 @@ export default {
     }
   },
   props: {
-    ComingSoonObj: Object
+    ComingSoonObj: Object,
+    genre: Object
   }
   
 }

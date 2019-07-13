@@ -31,7 +31,8 @@ const store = new Vuex.Store({
     ],
     featuredMovie: {},
     upcoming: [],
-    popular: []
+    popular: [],
+    genres: {}
   },
   getters : {
     USUARIOS : state => {
@@ -45,7 +46,11 @@ const store = new Vuex.Store({
     },
     POPULAR: state => {
       return state.popular;
-    }
+    },
+    GENRE_BY_ID: state => id => {
+      console.log("le paso el id: " + id)
+      return _.keyBy(state.genres, id);
+    },
   },
   mutations : {
     setMouseOnUserTitle: (state,status) => {
@@ -66,6 +71,10 @@ const store = new Vuex.Store({
     },
     SET_POPULAR : (state,payload) => {
       state.popular = payload
+    },
+    SET_GENRES : (state,payload) => {
+      console.log('prueba: ' + payload)
+      state.genres = payload
     }
   },
   actions: {
@@ -85,6 +94,10 @@ const store = new Vuex.Store({
       data = _.orderBy(data.results, 'release_date', 'desc')
       data = _.slice(data, 0, 4)
       context.commit('SET_POPULAR',data)
+    },
+    GET_GENRES : async (context,payload) => {
+      let { data } = await Axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=6f26fd536dd6192ec8a57e94141f8b20&language=es-ES')
+      context.commit('SET_GENRES',data)
     }
   }
 })

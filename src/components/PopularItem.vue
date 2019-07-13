@@ -2,7 +2,6 @@
     <div class="popular-item">
       <img 
         class="item"
-        :key="{key}" 
         :src="`https://image.tmdb.org/t/p/w500/${PopularObj.poster_path}`"
       />
       <div class="cover">
@@ -12,7 +11,7 @@
             </div>
             <div class="d-flex flex-row">
                 <div class="description d-flex flex-column justify-content-start">
-                    <p class="title">Black mirror</p>
+                    <p class="title">{{PopularObj.title}}</p>
                     <p>98% de coincidencia</p>
                     <p><span class="edad">+16</span>1h 30 min</p>
                     <p>Suspenso</p>
