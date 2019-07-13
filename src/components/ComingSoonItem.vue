@@ -9,10 +9,10 @@
           <div class="d-flex flex-column">
             <div class="d-flex flex-row justify-content-end">
               <img class="icon-plus" src="@/assets/images/desktop/add-list.svg" />
-              <img class="icon-plus" src="@/assets/images/desktop/add-list.svg" />
+              <img class="icon-like" src="@/assets/images/desktop/add-list.svg" />
             </div>
             <div class="d-flex flex-row justify-content-center">
-              <img class="icon-plus" src="@/assets/images/desktop/play.svg" />
+              <img class="icon-play" src="@/assets/images/desktop/play.svg" />
             </div>
             <div class="d-flex flex-column justify-content-start">
               <p class="title">Black mirror</p>
@@ -76,6 +76,9 @@ export default {
         }
         .arrow {
           margin: 31px 0;
+        }
+        .icon-plus {
+          margin-right: 10px;
         }
       }
       &:hover > .cover {

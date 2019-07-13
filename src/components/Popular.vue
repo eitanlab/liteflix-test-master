@@ -1,13 +1,12 @@
 <template>
     <div class="popular container">
         <h3 class="title">POPULARES DE LITEFLIX</h3>
-        <div class="list">
-					<img 
-					class="item"
-					:key="index" 
-					v-for="(item, index) in POPULAR"
-					:src="`https://image.tmdb.org/t/p/w300/${item.poster_path}`"
-					/>
+        <div class="list" >
+            <PopularItem 
+            v-for="(PopularObj, index) in POPULAR" 
+            :PopularObj="PopularObj"
+            :key="PopularObj.index"
+            />
         </div>
     </div>
 </template>
@@ -15,6 +14,7 @@
 <script>
 
 import {mapGetters} from 'vuex'
+import PopularItem from './PopularItem';
 
 export default {
   name: 'Popular',
@@ -22,6 +22,9 @@ export default {
     return {
 
     }
+  },
+  components: {
+    PopularItem
   },
   mounted(){
     this.$store.dispatch('GET_POPULAR')
@@ -54,9 +57,6 @@ export default {
                 justify-items: start;
                 grid-gap: 1rem;
                 height: auto;
-            }
-            .item {
-				width: 100%;
             }
         }
     }
