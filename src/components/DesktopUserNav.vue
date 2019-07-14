@@ -17,7 +17,7 @@
                 </nav>
             </div>
             <div class="sub-nav" 
-            v-if="mouseOnUserTitle || mouseOnUserSubMenu"
+            v-if="MOUSE_ON_USER_TITLE || MOUSE_ON_USER_SUBMENU"
             @mouseover="$store.commit('setMouseOnUserSubMenu', true)" 
             @mouseleave="$store.commit('setMouseOnUserSubMenu', false)"
             >
@@ -54,23 +54,17 @@ export default {
 		}
   },
 	computed : {
-		mouseOnUserTitle(){
-            return this.$store.state.mouseOnUserTitle
-		},
-		mouseOnUserSubMenu(){
-            return this.$store.state.mouseOnUserSubMenu
-		},
-		...mapGetters(['USUARIOS'])
+		...mapGetters(['MOUSE_ON_USER_TITLE','MOUSE_ON_USER_SUBMENU','USUARIOS'])
 	},
 	filters: {
-    truncate: function (text, length, suffix) {
-        if (text.length > length) {
-                return text.substring(0, length) + suffix;
-        } else {
-                return text;
+        truncate: function (text, length, suffix) {
+            if (text.length > length) {
+                    return text.substring(0, length) + suffix;
+            } else {
+                    return text;
+            }
         }
-	},
-  }
+    }
 }
 </script>
 

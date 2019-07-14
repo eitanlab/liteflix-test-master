@@ -18,6 +18,7 @@ const store = new Vuex.Store({
   state: {
     mouseOnUserTitle: false,
     mouseOnUserSubMenu: false,
+    showModal: false,
     usuarios: [
       { nombre: "Ernesto Garmendia",
         selected: true
@@ -32,9 +33,18 @@ const store = new Vuex.Store({
     featuredMovie: {},
     upcoming: [],
     popular: [],
-    genres: {}
+    genres: []
   },
   getters : {
+    MOUSE_ON_USER_TITLE: state => {
+      return state.mouseOnUserTitle;
+    },
+    MOUSE_ON_USER_SUBMENU: state => {
+      return state.mouseOnUserSubMenu;
+    },
+    SHOW_MODAL: state => {
+      return state.showModal;
+    },
     USUARIOS : state => {
       return state.usuarios;
     },
@@ -47,9 +57,21 @@ const store = new Vuex.Store({
     POPULAR: state => {
       return state.popular;
     },
-    GENRE_BY_ID: state => id => {
-      console.log("le paso el id: " + id)
-      return _.keyBy(state.genres, id);
+    GENRE_BY_ID: state  => id => {
+      /* console.log("le paso el id: " + id)
+      console.log(state.genres)
+      console.log(_.find(state.genres, ['id', id]))
+      payload.genres.forEach(genre => console.log(`Id: ${genre.id} name: ${genre.name}`))
+      return _.keyBy(state.genres, id) */
+
+      //SI A LA FUNCION LE AGREGO FLECHA ID RECIBO PARAMETRO ID PERO CAMBIA COMO LO DEVUELVE
+      // EL TEMA ES QUE STATE.GENRES NO ACEPTA EL FIND, COMO SI NO FUERA UN ARRAY
+      // Y CUANDO LO LOGUEAMOS NO ES EL ARRAY DEL ESTILO QUE QUEREMOS. POR QUE?
+
+      //return "accion"
+     // return _.find(state.genres, ['id', id])
+      return state.genres.find(genre => genre.id === id)
+      
     },
   },
   mutations : {
@@ -63,6 +85,9 @@ const store = new Vuex.Store({
     setMouseOnUserSubMenu: (state,status) => {
       return state.mouseOnUserSubMenu = status
     },
+    SET_SHOW_MODAL: (state,status) => {
+      return state.showModal = status
+    },
     SET_FEATURED_MOVIE : (state,payload) => {
       state.featuredMovie = payload
     },
@@ -73,7 +98,6 @@ const store = new Vuex.Store({
       state.popular = payload
     },
     SET_GENRES : (state,payload) => {
-      console.log('prueba: ' + payload)
       state.genres = payload
     }
   },
@@ -97,7 +121,7 @@ const store = new Vuex.Store({
     },
     GET_GENRES : async (context,payload) => {
       let { data } = await Axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=6f26fd536dd6192ec8a57e94141f8b20&language=es-ES')
-      context.commit('SET_GENRES',data)
+      context.commit('SET_GENRES',data.genres)
     }
   }
 })

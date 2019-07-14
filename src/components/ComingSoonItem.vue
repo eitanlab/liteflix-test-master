@@ -14,7 +14,7 @@
               <img class="icon-play" src="@/assets/images/desktop/play.svg" />
             </div>
             <div class="d-flex flex-column justify-content-start">
-              <p class="title">Black mirror</p>
+              <p class="title">{{ComingSoonObj.title}}</p>
               <p>98% de coincidencia<span>+16</span>1h 30 min</p>
               <p>{{genre.name}}</p>
             </div>

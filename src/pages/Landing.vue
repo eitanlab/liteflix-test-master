@@ -1,9 +1,11 @@
 <template>
   <div class="homepage-container">
+    <Modal />
     <Header/>
     <FeaturedMovie />
     <ComingSoon />
     <Popular />
+    
   </div>
 </template>
 
@@ -13,6 +15,7 @@ import Header from '@/components/Header.vue';
 import FeaturedMovie from '@/components/FeaturedMovie.vue';
 import ComingSoon from '@/components/ComingSoon.vue';
 import Popular from '@/components/Popular.vue';
+import Modal from '@/components/Modal.vue';
 
 export default {
   name: 'Homepage',
@@ -25,7 +28,8 @@ export default {
     Header,
     FeaturedMovie,
     ComingSoon,
-    Popular
+    Popular,
+    Modal
   }
 }
 </script>

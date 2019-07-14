@@ -10,7 +10,7 @@
                     <li><a href="#">Mi lista</a></li>
                 </ul>
             </nav>
-            <div class="add-movie-btn">
+            <div @click="$store.commit('SET_SHOW_MODAL', true)" class="add-movie-btn">
                 <img src="@/assets/images/mobile/plus.svg"><span>Agregar película</span>
             </div>
         </div>

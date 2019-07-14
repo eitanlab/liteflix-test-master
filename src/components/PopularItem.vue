@@ -14,7 +14,7 @@
                     <p class="title">{{PopularObj.title}}</p>
                     <p>98% de coincidencia</p>
                     <p><span class="edad">+16</span>1h 30 min</p>
-                    <p>Suspenso</p>
+                    <p>{{genre.name}}</p>
                 </div>
                 <img class="icon-plus" src="@/assets/images/desktop/add-list.svg" />
             </div>
@@ -37,7 +37,8 @@ export default {
     }
   },
   props: {
-    PopularObj: Object
+    PopularObj: Object,
+    genre: Object
   }
   
 }

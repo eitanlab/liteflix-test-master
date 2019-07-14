@@ -6,7 +6,7 @@
             v-for="(ComingSoonObj, index) in UPCOMING" 
             :ComingSoonObj="ComingSoonObj"
             :key="ComingSoonObj.index"
-            :genre="GENRE_BY_ID(ComingSoonObj.genre_ids[0])"
+            :genre="GENRE_BY_ID((ComingSoonObj.genre_ids[0]))"
             />
         </div>
     </div>

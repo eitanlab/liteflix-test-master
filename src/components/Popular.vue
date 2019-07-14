@@ -6,6 +6,7 @@
             v-for="(PopularObj, index) in POPULAR" 
             :PopularObj="PopularObj"
             :key="PopularObj.index"
+            :genre="GENRE_BY_ID((PopularObj.genre_ids[0]))"
             />
         </div>
     </div>
@@ -27,11 +28,11 @@ export default {
     PopularItem
   },
   mounted(){
-    this.$store.dispatch('GET_POPULAR')
+    this.$store.dispatch('GET_GENRES')
 	},
-	computed : {
-			...mapGetters(['POPULAR']),
-	}
+    computed : {
+        ...mapGetters(['POPULAR','GENRE_BY_ID']),
+    }
 }
 </script>
 
