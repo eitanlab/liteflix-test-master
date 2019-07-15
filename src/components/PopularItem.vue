@@ -46,8 +46,8 @@ export default {
 
 <style lang="scss" scoped>
     .popular-item {
-      width: 330px;
-      height: 460px;
+      width: 163.5px;
+      height: 245px;
       position: relative;
       cursor: pointer;
       > img {
@@ -55,6 +55,7 @@ export default {
       }
       @include media-breakpoint-up(lg) {  	
         width: 255px;
+        height: 70%;
       }
       .cover {
         position: absolute;

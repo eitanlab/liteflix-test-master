@@ -52,12 +52,12 @@ export default {
             align-items: center;
             grid-template-columns: repeat(auto-fit, minmax(163px, 1fr));
             justify-items: center;
-            height: 659px;
+            height: 508px;
             @include media-breakpoint-up(lg) {
                 grid-template-columns: repeat(auto-fit, minmax(253px, 1fr));
                 justify-items: start;
                 grid-gap: 1rem;
-                height: auto;
+                height: 660px;
             }
         }
     }

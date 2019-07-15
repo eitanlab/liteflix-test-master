@@ -32,14 +32,29 @@ const store = new Vuex.Store({
     featuredMovie: {},
     upcoming: [],
     popular: [],
-    localMovies: [],
+    localMovies: [
+      {
+        id: 9992,
+        original_title: 'Película 1',
+        genre_ids: [28],
+        url: '/rjbNpRMoVvqHmhmksbokcyCr7wn.jpg',
+        release_date: '2019-07-08'
+      },
+      {
+        id: 9990,
+        original_title: 'Película 2',
+        genre_ids: [26],
+        url: '/rjbNpRMoVvqHmhmksbokcyCr7wn.jpg',
+        release_date: '2019-07-14'
+      }
+    ],
     genres: [],
     uploadForm: {
-      id: 9999,
+      id: 0,
       original_title: '',
-      genre: {},
+      genre_ids: [0],
       url: '/rjbNpRMoVvqHmhmksbokcyCr7wn.jpg',
-      errors: []
+      release_date: '2019-07-14'
     }
   },
   getters : {
@@ -107,9 +122,13 @@ const store = new Vuex.Store({
       state.uploadForm.original_title = value
     },
     SET_FORM_GENRE : (state,event) => {
-      console.log('entró' + event.target.value)
-      state.uploadForm.genre = event.target.value
-    }
+      state.uploadForm.genre_ids = event.target.value
+    },
+    UPDATE_LOCAL_MOVIES : (state,payload) => {
+      console.log(state.localMovies.results)
+      console.log(payload)
+      state.localMovies.concat(payload)
+    },
   },
   actions: {
     GET_FEATURED_MOVIE : async (context,payload) => {
@@ -122,12 +141,14 @@ const store = new Vuex.Store({
       data = _.orderBy(data.results, 'release_date', 'desc')
       data = _.slice(data, 0, 4)
       context.commit('SET_UPCOMING',data)
+      context.commit('UPDATE_LOCAL_MOVIES',data)
     },
     GET_POPULAR : async (context,payload) => {
       let { data } = await Axios.get('https://api.themoviedb.org/3/movie/popular?api_key=6f26fd536dd6192ec8a57e94141f8b20')
       data = _.orderBy(data.results, 'release_date', 'desc')
       data = _.slice(data, 0, 4)
       context.commit('SET_POPULAR',data)
+      context.commit('UPDATE_LOCAL_MOVIES',data)
     },
     GET_GENRES : async (context,payload) => {
       let { data } = await Axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=6f26fd536dd6192ec8a57e94141f8b20&language=es-ES')
