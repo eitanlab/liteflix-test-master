@@ -7,8 +7,8 @@
                         <li><a href="#">Niños</a></li>
                         <li><a href="#"><img src="@/assets/images/desktop/bell.svg" class="bell"></a></li>
                         <li 
-                        @mouseover="$store.commit('setMouseOnUserTitle', true)" 
-                        @mouseleave="$store.commit('setMouseOnUserTitle', false)" 
+                        @mouseover="$store.commit('SET_MOUSE_ON_TITLE', true)" 
+                        @mouseleave="$store.commit('SET_MOUSE_ON_TITLE', false)" 
                         >
                             <img src="@/assets/images/desktop/user-01.svg" class="fill">
                             <img src="@/assets/images/desktop/arrow.svg" class="arrow">
@@ -18,8 +18,8 @@
             </div>
             <div class="sub-nav" 
             v-if="MOUSE_ON_USER_TITLE || MOUSE_ON_USER_SUBMENU"
-            @mouseover="$store.commit('setMouseOnUserSubMenu', true)" 
-            @mouseleave="$store.commit('setMouseOnUserSubMenu', false)"
+            @mouseover="$store.commit('SET_MOUSE_ON_SUBMENU', true)" 
+            @mouseleave="$store.commit('SET_MOUSE_ON_SUBMENU', false)"
             >
                 <div class="container d-flex flex-column">
                     <div class="user-btn" 

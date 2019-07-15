@@ -98,6 +98,7 @@ export default {
             @include media-breakpoint-up(lg) {
                 justify-content: left;
                 max-width: 1140px;
+                padding: 10px 0;
             }
             .play,
             .add-list {

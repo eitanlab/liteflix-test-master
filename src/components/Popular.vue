@@ -28,7 +28,7 @@ export default {
     PopularItem
   },
   mounted(){
-    this.$store.dispatch('GET_GENRES')
+    this.$store.dispatch('GET_POPULAR','GET_GENRES')
 	},
     computed : {
         ...mapGetters(['POPULAR','GENRE_BY_ID']),

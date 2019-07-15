@@ -8,6 +8,8 @@
           <div class="d-flex flex-column">
             <div class="d-flex flex-row justify-content-end">
               <img class="icon-plus" src="@/assets/images/desktop/add-list.svg" />
+              <!-- Utilicé dos veces el mismo ícono. En zeplin no estaba la campanita 
+              y por límite de tiempo no llegué a sacarla de los assets originales -->
               <img class="icon-like" src="@/assets/images/desktop/add-list.svg" />
             </div>
             <div class="d-flex flex-row justify-content-center">

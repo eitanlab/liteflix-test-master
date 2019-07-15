@@ -10,7 +10,6 @@ import _ from 'lodash'
 
 import createPersistedState from 'vuex-persistedstate'
 
-
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
@@ -33,7 +32,15 @@ const store = new Vuex.Store({
     featuredMovie: {},
     upcoming: [],
     popular: [],
-    genres: []
+    localMovies: [],
+    genres: [],
+    uploadForm: {
+      id: 9999,
+      original_title: '',
+      genre: {},
+      url: '/rjbNpRMoVvqHmhmksbokcyCr7wn.jpg',
+      errors: []
+    }
   },
   getters : {
     MOUSE_ON_USER_TITLE: state => {
@@ -57,32 +64,25 @@ const store = new Vuex.Store({
     POPULAR: state => {
       return state.popular;
     },
-    GENRE_BY_ID: state  => id => {
-      /* console.log("le paso el id: " + id)
-      console.log(state.genres)
-      console.log(_.find(state.genres, ['id', id]))
-      payload.genres.forEach(genre => console.log(`Id: ${genre.id} name: ${genre.name}`))
-      return _.keyBy(state.genres, id) */
-
-      //SI A LA FUNCION LE AGREGO FLECHA ID RECIBO PARAMETRO ID PERO CAMBIA COMO LO DEVUELVE
-      // EL TEMA ES QUE STATE.GENRES NO ACEPTA EL FIND, COMO SI NO FUERA UN ARRAY
-      // Y CUANDO LO LOGUEAMOS NO ES EL ARRAY DEL ESTILO QUE QUEREMOS. POR QUE?
-
-      //return "accion"
-     // return _.find(state.genres, ['id', id])
-      return state.genres.find(genre => genre.id === id)
-      
+    GENRES: state => {
+      return state.genres;
     },
+    GENRE_BY_ID: state  => id => {
+      return state.genres.find(genre => genre.id === id);
+    },
+    UPLOAD_FORM: state => {
+      return state.uploadForm;
+    }
   },
   mutations : {
-    setMouseOnUserTitle: (state,status) => {
+    SET_MOUSE_ON_TITLE: (state,status) => {
       if (status == true) {
         return state.mouseOnUserTitle = status
       } else {
         setTimeout( () => state.mouseOnUserTitle = status, 1000)
       } 
     },
-    setMouseOnUserSubMenu: (state,status) => {
+    SET_MOUSE_ON_SUBMENU: (state,status) => {
       return state.mouseOnUserSubMenu = status
     },
     SET_SHOW_MODAL: (state,status) => {
@@ -99,6 +99,16 @@ const store = new Vuex.Store({
     },
     SET_GENRES : (state,payload) => {
       state.genres = payload
+    },
+    ADD_MOVIE : (state,movie) => {
+      state.localMovies.push(movie)
+    },
+    UPDATE_FORM_NOMBRE : (state,value) => {
+      state.uploadForm.original_title = value
+    },
+    SET_FORM_GENRE : (state,event) => {
+      console.log('entró' + event.target.value)
+      state.uploadForm.genre = event.target.value
     }
   },
   actions: {
