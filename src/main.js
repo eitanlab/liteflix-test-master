@@ -48,7 +48,7 @@ const store = new Vuex.Store({
         release_date: '2019-07-14'
       }
     ],
-    genres: [],
+    genres: [{id: 0, name: ''}],
     uploadForm: {
       id: 0,
       original_title: '',
@@ -141,17 +141,17 @@ const store = new Vuex.Store({
       data = _.orderBy(data.results, 'release_date', 'desc')
       data = _.slice(data, 0, 4)
       context.commit('SET_UPCOMING',data)
-      context.commit('UPDATE_LOCAL_MOVIES',data)
     },
     GET_POPULAR : async (context,payload) => {
+      console.log('1')
       let { data } = await Axios.get('https://api.themoviedb.org/3/movie/popular?api_key=6f26fd536dd6192ec8a57e94141f8b20')
       data = _.orderBy(data.results, 'release_date', 'desc')
       data = _.slice(data, 0, 4)
       context.commit('SET_POPULAR',data)
-      context.commit('UPDATE_LOCAL_MOVIES',data)
     },
     GET_GENRES : async (context,payload) => {
       let { data } = await Axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=6f26fd536dd6192ec8a57e94141f8b20&language=es-ES')
+      console.log('2')
       context.commit('SET_GENRES',data.genres)
     }
   }

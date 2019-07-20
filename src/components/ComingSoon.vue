@@ -28,7 +28,8 @@ export default {
     ComingSoonItem
   },
   mounted(){
-    this.$store.dispatch('GET_UPCOMING','GET_GENRES')
+    this.$store.dispatch('GET_GENRES'),
+    this.$store.dispatch('GET_UPCOMING')
 	},
 	computed : {
     ...mapGetters(['UPCOMING','GENRE_BY_ID']),
